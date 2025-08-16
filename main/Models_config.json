@@ -20,7 +20,7 @@
     {
         "role": "router",
         "name": "Router",
-        "ollama_name":"tinydolphin",
+        "ollama_name":"smollm2:135m",
         "has_tools": false,
         "has_CoT": false,
         "port": 11435,
