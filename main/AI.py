@@ -11,6 +11,7 @@ import aiofiles
 from models import Model
 import json
 from utils import log
+import subprocess
 
 # Sooo ... now what?
 
@@ -156,7 +157,9 @@ class AI:
         for model in self.models.values():
             if model.session is not None:
                 await model.session.close()
-        model.process.terminate()  # type: ignore
+            if model.process is not None:
+                model.process.terminate()
+            
         
         await self.save_context()
         print("Done.")
