@@ -27,7 +27,7 @@ class Model:
 
 
     async def warm_up(self):
-        async with aiofiles.open(f"main/logs/{self.ollama_name}") as f:
+        async with aiofiles.open(f"/workspaces/JARVIS-Test/main/logs/{self.ollama_name}") as f:
             self.process = subprocess.Popen(
                     self.start_command, 
                     env=self.ollama_env, 
