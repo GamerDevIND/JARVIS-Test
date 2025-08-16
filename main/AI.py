@@ -24,7 +24,7 @@ async def wait_until_ready(url: str, timeout: int = 20):
             async with aiohttp.ClientSession() as session:
                 async with session.get(f"{url}/api/tags") as res:
                     if res.status == 200:
-                        print("🟩 Ollama is ready!")
+                        await log("Ollama is ready!", "success")
                         return True
         except:
             print(f"Reties: {i+1} / {timeout}")
@@ -87,22 +87,22 @@ class AI:
         else:
             router = self.models.get("router")
             if router is None:
-                print("🟥 Router model not found, using default model.")
+                await log("Router model not found, using default model.", "error")
                 return default_model
-            print("Routing query:", query)
+            await log(f"Routing query: {query}", "info")
             try:
                 response = await router.generate_response_noStream(query, self.context)
                 if response:
                     response = response.strip()
                     # response= json.loads(response)
-                    print("Router response:", response)
+                    await log(f"Router response: {response}", "info")
                     if response in self.models.keys():
                         return response
                     else:
-                        print(f"🟥 Router returned an unknown model: {response}, using default model.")
+                        await log(f"🟥 Router returned an unknown model: {response}, using default model.", "error")
                         return default_model
             except Exception as e:
-                print(f"🟥 Error during routing: {e}")
+                await log(f"🟥 Error during routing: {e}", "error")
                 return default_model
 
     async def generate(self, query:str, save = True):
@@ -125,6 +125,8 @@ class AI:
             print(query)
 
             stream = not (self.platform.lower() in STREAM_DISABLED)
+            print(f"Using steam: {stream}")
+            await log("Generating response...", "info")
             if not stream:
                 response = await model.generate_response_noStream(query, self.context)
                 if response:
@@ -135,6 +137,7 @@ class AI:
                     await self.save_context()
 
                 yield response
+                await log("Generation Completed", "info")
             else:
                 part = ""
                 response = part
@@ -151,6 +154,7 @@ class AI:
                         {"role": "assistant", "content": response}
                     ])
                     await self.save_context()
+                await log("Generation Completed", "info")
 
     async def shut_down(self):
         print("Shutting Down...")
@@ -160,7 +164,7 @@ class AI:
             if model.process is not None:
                 model.process.terminate()
             
-        
+        subprocess.Popen(["ollama", "stop", model.ollama_name])
         await self.save_context()
         print("Done.")
 
