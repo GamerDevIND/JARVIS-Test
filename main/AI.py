@@ -6,7 +6,6 @@ from configs import ( CoT_PROMPT,
                      STREAM_DISABLED )
 
 import asyncio
-import aiohttp
 import aiofiles
 from models import Model
 import json
