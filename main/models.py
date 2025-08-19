@@ -4,6 +4,7 @@ import asyncio
 import subprocess
 import os # I hate my life; anyway this is for `env vars`
 import aiofiles
+from utils import log
 
 class Model:
     def __init__(self,role:str, name:str, ollama_name:str, has_tools:bool, has_CoT:bool, port:int, system_prompt:str) -> None:
@@ -25,6 +26,20 @@ class Model:
 
         self.session = None
 
+    async def wait_until_ready(self, url: str, timeout: int = 20):
+        print("Waiting for Ollama to be ready...")
+        for i in range(timeout):
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(f"{url}/api/tags") as res:
+                        if res.status == 200:
+                            await log("Ollama is ready!", "success")
+                            return True
+            except:
+                print(f"Reties: {i+1} / {timeout}")
+                pass
+            await asyncio.sleep(1)
+        raise TimeoutError(f"🟥 Ollama server did not start in time.")
 
     async def warm_up(self):
         async with aiofiles.open(f"/workspaces/JARVIS-Test/main/logs/{self.ollama_name}") as f:
@@ -35,6 +50,7 @@ class Model:
                     stderr= f.fileno()
             )
 
+        await self.wait_until_ready(self.host)
 
         print(f"🟨 [INFO] {self.name}({self.ollama_name}) warming up...")
         print("Trying Non-Streaming...")
@@ -92,6 +108,7 @@ class Model:
         return ""
 
     async def generate_response_noStream(self, query:str, context = {}):
+        await log("Generating response...", "info")
         url = f"{self.host}/api/chat" # For API calling
 
         messages = [{"role": "system", "content": self.system}] + context.get("conversations", []) + [{"role": "user", "content": query}]
@@ -132,6 +149,8 @@ class Model:
             return f"An unexpected error occurred: {e}"
         
     async def generate_response_Stream(self, query: str, context={}):
+        await log("Generating response...", "info")
+        
         url = f"{self.host}/api/chat"
 
         messages = [{"role": "system", "content": self.system}] + context.get("conversations", []) + [{"role": "user", "content": query}]
