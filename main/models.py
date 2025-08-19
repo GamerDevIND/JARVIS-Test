@@ -42,7 +42,7 @@ class Model:
         raise TimeoutError(f"🟥 Ollama server did not start in time.")
 
     async def warm_up(self):
-        async with aiofiles.open(f"/workspaces/JARVIS-Test/main/logs/{self.ollama_name}") as f:
+        async with aiofiles.open(f"/workspaces/JARVIS-Test/main/logs/{self.ollama_name}.txt") as f:
             self.process = subprocess.Popen(
                     self.start_command, 
                     env=self.ollama_env, 
@@ -150,7 +150,7 @@ class Model:
         
     async def generate_response_Stream(self, query: str, context={}):
         await log("Generating response...", "info")
-        
+
         url = f"{self.host}/api/chat"
 
         messages = [{"role": "system", "content": self.system}] + context.get("conversations", []) + [{"role": "user", "content": query}]
