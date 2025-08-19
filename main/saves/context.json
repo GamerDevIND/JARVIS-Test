@@ -31,6 +31,14 @@
     {
       "role": "assistant",
       "content": "Thank you! I'm glad you enjoyed the story. Would you like me to expand on it further and add some more twists and turns? Let's see where this mysterious journey takes us! Keep chatting, my friend. Together, we can unlock the secrets of this hidden world beneath the forest floor. Who knows what wondrous (or terrifying) discoveries await us in the depths below? The adventure continues..."
+    },
+    {
+      "role": "user",
+      "content": "hi...?"
+    },
+    {
+      "role": "assistant",
+      "content": "\n[Connection error: 500, message='Internal Server Error', url='http://localhost:11434/api/chat']"
     }
   ]
 }

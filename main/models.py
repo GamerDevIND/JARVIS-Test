@@ -42,7 +42,7 @@ class Model:
         raise TimeoutError(f"🟥 Ollama server did not start in time.")
 
     async def warm_up(self):
-        async with aiofiles.open(f"/workspaces/JARVIS-Test/main/logs/{self.ollama_name}.txt") as f:
+        async with aiofiles.open(f"//workspaces/JARVIS-Test/main/logs/{self.ollama_name}.txt") as f:
             self.process = subprocess.Popen(
                     self.start_command, 
                     env=self.ollama_env, 
