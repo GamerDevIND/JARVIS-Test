@@ -8,9 +8,11 @@ PULSE a.k.a. Personal Unified Logic System Entity is a replication of JARVIS fro
 
 - Coffee
 
-- Ollama
+- [Ollama](https://ollama.com/)
 
 - Local machine
+
+- [Python](https://www.python.org/)
 
 - Open source LLMs
 
@@ -31,10 +33,9 @@ PULSE IS:
 
 # TECH STUFF (because sadly this shit needs to work):
 
-- Python (the snake, which bites)
+- [Python](https://www.python.org/) (the snake, which bites)
 
-- aiohttp, coqui-tts, etc (see requirements.txt): because unfortunately nobody wants to pause their main loop to get a response. (SPOILER: it's for multimodal and async I/O for http requests) and coqui or TTS
-
+- [aiohttp](https://pypi.org/project/aiohttp/), etc (see requirements.txt): because unfortunately nobody wants to pause their main loop to get a response. (SPOILER: it's for multimodal and async I/O for http requests)
 - Multimodal support: served by Ollama. on their very own port to actually have multiple models (Yes, this is why I'm using aiohttp instead of ollama)
 
 - Per model configuration: system prompt and other configurations for each model is available for some reason
@@ -49,21 +50,21 @@ PULSE IS:
 
 # HOW TO ACTUALLY USE THIS PIECE OF SHIT:
 
-1. Download and install Ollama
+1. Download and install [Ollama](https://ollama.com/download)
 
 
 2. Download your models. ANY MODEL. LIKE ANY MODEL AVAILABLE. My suggestions are:
 
 
 
-- Llama 3.2
+- [Smollm2](https://ollama.com/library/smollm2)
 
-- OpenHermes
+- [Zephyr](https://ollama.com/library/zephyr)
 
-- DeepSeek-r1
+- [DeepSeek-R1](https://ollama.com/library/deepseek-r1)
 
 
-3. Install and setup Python
+3. Install and setup [Python](https://www.python.org/downloads/)
 
 
 4. Install the requirements:
@@ -80,9 +81,6 @@ pip install -r requirements.txt
 
 
 7. Enjoy
-
-
-
 
 ---
 
@@ -165,14 +163,7 @@ the model takes the formed "thing" and predicts what should come next using prob
 
 3. **Etc**: it's not over yet i just lack the knowledge and too lazy to search it
 
-
-
-THATS WHAT I AM DOING
-
-User > llama (encoder) > agentic loop [models -> llama -> repeat if needed] (model) > OpenHermes (decoder)
-
 So Jarvis was a huge llm this whole fucking time
-
 
 ---
 
