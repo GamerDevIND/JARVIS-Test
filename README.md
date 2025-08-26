@@ -35,16 +35,14 @@ PULSE IS:
 
 - [Python](https://www.python.org/) (the snake, which bites)
 
-- [aiohttp](https://pypi.org/project/aiohttp/), etc (see requirements.txt): because unfortunately nobody wants to pause their main loop to get a response. (SPOILER: it's for multimodal and async I/O for http requests)
-- Multimodal support: served by Ollama. on their very own port to actually have multiple models (Yes, this is why I'm using aiohttp instead of ollama)
+- [aiohttp](https://pypi.org/project/aiohttp/), [aiofiles](https://pypi.org/project/aiofiles/) etc (see requirements.txt): because unfortunately nobody wants to pause their main loop to get a response. (SPOILER: it's for multimodal and async I/O for http requests)
+- Multimodal support: served by Ollama. on their very own port to actually have multiple models (Yes, this is why I'm using aiohttp instead of ollama) and async file I/O for non-blocking file I/O in the main loop.
 
 - Per model configuration: system prompt and other configurations for each model is available for some reason
 
 - Swappable models: as this is running locally nobody gives a fuck what you're doing you can do anything and everything that includes you can use any and every model you want.
 
 - Experimental features: random existential crisis with emotions. I don't know how it works.
-
-
 
 ---
 
@@ -127,7 +125,7 @@ Then the AI class will handle them like little smart minions slaves
 
 I'm not interested in giving my data and money to OpenAI and Google
 
-**You don't know how LLMs (transformers) work? Here's a quick overview:**
+### **You don't know how LLMs (transformers) work? Here's a quick overview:**
 
 A transformer has:
 
