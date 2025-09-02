@@ -112,6 +112,8 @@ class AI:
         if poll is not None:
             await log(f"Restarting model {model.name}", "warn")
             await model.warm_up()
+        else:
+            await log("Continung with model", "info")
 
         full_response = ""
         if stream:
