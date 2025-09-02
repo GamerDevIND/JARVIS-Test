@@ -107,7 +107,12 @@ class AI:
 
         stream = self.platform.lower() not in STREAM_DISABLED
         await log(f"Using stream: {stream}", "info")
-        
+        poll = model.process.poll() # type: ignore
+
+        if poll is not None:
+            await log(f"Restarting model {model.name}", "warn")
+            await model.warm_up()
+
         full_response = ""
         if stream:
             async for part in model.generate_response_Stream(query, self.context):
