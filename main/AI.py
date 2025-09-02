@@ -44,6 +44,7 @@ class AI:
         await log("Warming up all models...", "info")
         warmup_tasks = [model.warm_up() for model in self.models.values()]
         await asyncio.gather(*warmup_tasks)
+        asyncio.create_task(self.check_models())
 
     async def load_context(self):
         try:
@@ -59,6 +60,14 @@ class AI:
                 await file.write(json.dumps(self.context, indent=2))
         except IOError as e:
             await log(f"🟥 Error saving context: {e}", "error")
+
+    async def check_models(self, interval=10):
+        while True:
+            for role, model in self.models.items():
+                if model.process and model.process.poll() is not None:
+                    await log(f"⚠️ {model.name} crashed. Restarting...", "warn")
+                    await model.warm_up()
+            await asyncio.sleep(interval)
 
     async def route_query(self, query: str, manual: str | None = None) -> str:
         if manual is not None:
