@@ -1,8 +1,8 @@
-import aiohttp
+import os
 import json
 import asyncio
+import aiohttp
 import subprocess
-import os
 from utils import log
 
 class Model:
@@ -19,7 +19,7 @@ class Model:
         self.ollama_env = os.environ.copy()
         self.ollama_env["OLLAMA_HOST"] = self.host
         self.warmed_up = False
-        self.session = None
+        self.session: aiohttp.ClientSession | None = None
         self.process = None
 
     async def wait_until_ready(self, url: str, timeout: int = 30):
@@ -30,7 +30,7 @@ class Model:
                     async with session.get(f"{url}/api/tags") as res:
                         if res.status == 200:
                             await log(f"{self.name} is ready!", "success")
-                            return True
+                            return
             except aiohttp.ClientError:
                 await log(f"Retries: {i+1} / {timeout}", "info")
             await asyncio.sleep(1)
@@ -39,12 +39,13 @@ class Model:
     async def warm_up(self):
         if self.warmed_up:
             return
+
+        # Construct log file path using os.path.join
+        log_dir = os.path.join("workspaces", "JARVIS-Test", "main", "logs")
+        os.makedirs(log_dir, exist_ok=True)
+        log_file_path = os.path.join(log_dir, f"{self.ollama_name}.txt")
         
-        log_file_path = f"//workspaces/JARVIS-Test/main/logs/{self.ollama_name}.txt"
-        os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
-        
-        await log(f"🟨 [INFO] {self.name}({self.ollama_name}) warming up...", "info")
-        
+        await log(f"🟨 [INFO] {self.name} ({self.ollama_name}) warming up...", "info")
         with open(log_file_path, "w") as f:
             self.process = subprocess.Popen(
                 self.start_command,
@@ -75,7 +76,7 @@ class Model:
         except (aiohttp.ClientError, ValueError) as e:
             await log(f"🟥 Non-streaming test failed for {self.name}: {e}", "error")
             return
-        
+
         await log(f'🟩 Non-Streaming works. Trying Streaming...', "success")
 
         # Perform a streaming test
@@ -89,13 +90,19 @@ class Model:
                     while "\n" in buffer:
                         line, buffer = buffer.split("\n", 1)
                         if line.strip():
-                            json.loads(line) # Test for JSON decodability
+                            try:
+                                json_line = json.loads(line.strip())
+                                # Assumes a streaming response contains a "message" object
+                                if 'message' in json_line:
+                                    break
+                            except json.JSONDecodeError:
+                                continue
         except (aiohttp.ClientError, json.JSONDecodeError) as e:
             await log(f"🟥 Streaming test failed for {self.name}: {e}", "error")
             return
 
         self.warmed_up = True
-        await log(f"🟩 [INFO] {self.name}({self.ollama_name}) warmed up!", "success")
+        await log(f"🟩 [INFO] {self.name} ({self.ollama_name}) warmed up!", "success")
 
     async def generate_response_noStream(self, query: str, context: dict) -> str:
         await log(f"Generating non-streaming response from {self.name}...", "info")
@@ -109,7 +116,7 @@ class Model:
         }
         if not self.session:
             self.session = aiohttp.ClientSession()
-        
+
         try:
             async with self.session.post(url, headers=headers, data=json.dumps(data)) as response:
                 response.raise_for_status()
@@ -150,14 +157,13 @@ class Model:
                     buffer += chunk.decode("utf-8")
                     while "\n" in buffer:
                         line, buffer = buffer.split("\n", 1)
-                        if not line.strip():
-                            continue
-                        try:
-                            data = json.loads(line)
-                            if "message" in data and "content" in data["message"]:
-                                yield data["message"]["content"]
-                        except json.JSONDecodeError:
-                            continue
+                        if line.strip():
+                            try:
+                                json_line = json.loads(line.strip())
+                                if 'message' in json_line and 'content' in json_line['message']:
+                                    yield json_line['message']['content']
+                            except json.JSONDecodeError:
+                                continue
         except aiohttp.ClientError as e:
             await log(f"🟥 [ERROR] Connection error: {e}", "error")
             yield f"\n[Connection error: {e}]"
@@ -167,11 +173,13 @@ class Model:
         except Exception as e:
             await log(f"🟥 [ERROR] Unexpected: {e}", "error")
             yield f"\n[Unexpected error: {e}]"
-            
+
     async def shutdown(self):
         await log(f"Shutting down {self.name}...", "info")
         if self.session is not None:
             await self.session.close()
+            self.session = None
         if self.process is not None:
             self.process.terminate()
             await log(f"{self.name} process terminated.", "success")
+            
