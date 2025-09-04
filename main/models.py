@@ -45,7 +45,7 @@ class Model:
             return
 
         # Construct log file path using os.path.join
-        log_dir = os.path.join( "logs")
+        log_dir = os.path.join( "main", "logs")
         os.makedirs(log_dir, exist_ok=True)
         log_file_path = os.path.join(log_dir, f"{self.ollama_name}.log")
         
