@@ -45,9 +45,9 @@ class Model:
             return
 
         # Construct log file path using os.path.join
-        log_dir = os.path.join( "logs")
+        log_dir = os.path.join( "workspaces","JARVIS-Test","main","logs")
         os.makedirs(log_dir, exist_ok=True)
-        log_file_path = os.path.join(log_dir, f"{self.ollama_name}.txt")
+        log_file_path = os.path.join(log_dir, f"{self.ollama_name}.log")
         
         await log(f"🟨 [INFO] {self.name} ({self.ollama_name}) warming up...", "info")
         with open(log_file_path, "w") as f:
