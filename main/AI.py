@@ -116,13 +116,13 @@ class AI:
 
         stream = self.platform.lower() not in STREAM_DISABLED
         await log(f"Using stream: {stream}", "info")
-        poll = model.process.poll() # type: ignore
+        poll = model.process.poll()  # type: ignore
 
         if poll is not None:
             await log(f"Restarting model {model.name}", "warn")
             await model.warm_up()
         else:
-            await log("Continung with model", "info")
+            await log("Continuing with model", "info")
 
         full_response = ""
         if stream:
@@ -148,9 +148,8 @@ class AI:
 async def main():
     ai = AI()
     await ai.init("cli")
-    
     while True:
-        req = input(">>> ")
+        req = await asyncio.to_thread(input, ">>> ")
         if req == "/bye":
             await ai.shut_down()
             break
