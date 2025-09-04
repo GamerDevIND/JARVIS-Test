@@ -23,8 +23,8 @@ class Model:
         self.process = None
 
     def _get_endpoint(self) -> str:
-        # Use a different endpoint for router models.
-        return "/api/route" if self.role == "router" else "/api/chat"
+        # Always use /api/chat endpoint for all models, including the router.
+        return "/api/chat"
 
     async def wait_until_ready(self, url: str, timeout: int = 30):
         await log(f"Waiting for {self.name} on {url}...", "info")
@@ -63,7 +63,7 @@ class Model:
         if not self.session:
             self.session = aiohttp.ClientSession()
 
-        # Determine the correct endpoint based on role
+        # Determine the correct endpoint based on role. Now always /api/chat.
         endpoint = self._get_endpoint()
         url = f"{self.host}{endpoint}"
         headers = {"Content-Type": "application/json"}
