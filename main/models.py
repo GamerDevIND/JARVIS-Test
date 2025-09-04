@@ -45,7 +45,7 @@ class Model:
             return
 
         # Construct log file path using os.path.join
-        log_dir = os.path.join("workspaces", "JARVIS-Test", "main", "logs")
+        log_dir = os.path.join( "logs")
         os.makedirs(log_dir, exist_ok=True)
         log_file_path = os.path.join(log_dir, f"{self.ollama_name}.txt")
         
