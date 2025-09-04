@@ -149,7 +149,7 @@ async def main():
     ai = AI()
     await ai.init("cli")
     while True:
-        req = await asyncio.to_thread(input, ">>> ")
+        req = input(">>> ")
         if req == "/bye":
             await ai.shut_down()
             break
