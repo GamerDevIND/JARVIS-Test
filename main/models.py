@@ -22,6 +22,10 @@ class Model:
         self.session: aiohttp.ClientSession | None = None
         self.process = None
 
+    def _get_endpoint(self) -> str:
+        # Use a different endpoint for router models.
+        return "/api/route" if self.role == "router" else "/api/chat"
+
     async def wait_until_ready(self, url: str, timeout: int = 30):
         await log(f"Waiting for {self.name} on {url}...", "info")
         for i in range(timeout):
@@ -59,14 +63,17 @@ class Model:
         if not self.session:
             self.session = aiohttp.ClientSession()
 
+        # Determine the correct endpoint based on role
+        endpoint = self._get_endpoint()
+        url = f"{self.host}{endpoint}"
+        headers = {"Content-Type": "application/json"}
+        
         # Perform a non-streaming test
         data = {
             "model": self.ollama_name,
             "messages": [{"role": "user", "content": "hi"}],
             "stream": False,
         }
-        url = f"{self.host}/api/chat"
-        headers = {"Content-Type": "application/json"}
         try:
             async with self.session.post(url, headers=headers, data=json.dumps(data)) as response:
                 response.raise_for_status()
@@ -106,7 +113,8 @@ class Model:
 
     async def generate_response_noStream(self, query: str, context: dict) -> str:
         await log(f"Generating non-streaming response from {self.name}...", "info")
-        url = f"{self.host}/api/chat"
+        endpoint = self._get_endpoint()
+        url = f"{self.host}{endpoint}"
         messages = context.get("conversations", []) + [{"role": "user", "content": query}]
         headers = {"Content-Type": "application/json"}
         data = {
@@ -138,7 +146,8 @@ class Model:
 
     async def generate_response_Stream(self, query: str, context: dict):
         await log(f"Generating streaming response from {self.name}...", "info")
-        url = f"{self.host}/api/chat"
+        endpoint = self._get_endpoint()
+        url = f"{self.host}{endpoint}"
         messages = context.get("conversations", []) + [{"role": "user", "content": query}]
         headers = {"Content-Type": "application/json"}
         data = {
@@ -182,4 +191,3 @@ class Model:
         if self.process is not None:
             self.process.terminate()
             await log(f"{self.name} process terminated.", "success")
-            
