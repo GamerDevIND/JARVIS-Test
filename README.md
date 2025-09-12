@@ -161,8 +161,6 @@ the model takes the formed "thing" and predicts what should come next using prob
 
 3. **Etc**: it's not over yet i just lack the knowledge and too lazy to search it
 
-So Jarvis was a huge llm this whole fucking time
-
 ---
 
 # End note:
