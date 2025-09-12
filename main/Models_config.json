@@ -5,6 +5,7 @@
         "ollama_name": "zephyr", 
         "has_tools": false, 
         "has_CoT": false, 
+        "has_vision": false,
         "port":11434, 
         "system_prompt": ""
     },
@@ -14,6 +15,7 @@
         "ollama_name": "deepseek-r1:7b",
         "has_tools": true,
         "has_CoT":true,
+        "has_vision": false,
         "port": 13345,
         "system_prompt": ""
     },
@@ -21,8 +23,9 @@
         "role": "router",
         "name": "Router",
         "ollama_name":"smollm2:135m",
-        "has_tools": false,
+        "has_tools": true,
         "has_CoT": false,
+        "has_vision": false
         "port": 11435,
         "system_prompt": ""
     }
