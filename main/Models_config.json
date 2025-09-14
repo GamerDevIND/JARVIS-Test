@@ -25,7 +25,7 @@
         "ollama_name":"smollm2:135m",
         "has_tools": true,
         "has_CoT": false,
-        "has_vision": false
+        "has_vision": false,
         "port": 11435,
         "system_prompt": ""
     }
