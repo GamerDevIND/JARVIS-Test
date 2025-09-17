@@ -31,4 +31,4 @@ else:
 
 commands = commands.split()
 
-Popen(commands)
+Popen(commands, shell=True,)
