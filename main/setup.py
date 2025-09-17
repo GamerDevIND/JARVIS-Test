@@ -1,11 +1,11 @@
-from subprocess import Popen
+from subprocess import run
 import json
 
 commands = "pip install -r requirements.txt "
 
-ollama = input("Do you have Ollama installed? (Y/N)").lower()
+ollama = input("Do you have Ollama installed? (Y/N) ").lower()
 if ollama == "n":
-    os = input("Which OS are you using? (W for Windows / L for Linux / M for MacOS)").lower()
+    os = input("Which OS are you using? (W for Windows / L for Linux / M for MacOS) ").lower()
     if os == "l":
         if input("Do you want to install Ollama now? (Y/N)").lower() == "y":
             commands += "&& curl -fsSL https://ollama.com/install.sh | sh"
@@ -16,9 +16,9 @@ if ollama == "n":
         print("Please install Ollama first: https://ollama.com/download")
         exit()
 
-models = input("Do you have the models config JSON file configured? (Y/N)").lower()
+models = input("Do you have the models config JSON file configured? (Y/N) ").lower()
 if models == "y":
-    if input("Would you like to download the configured models? (Y/N)").lower() == 'y':
+    if input("Would you like to download the configured models? (Y/N) ").lower() == 'y':
         with open("main/Models_config.json") as f:
             model_file:list[dict] = json.load(f)
             for model in model_file:
@@ -31,4 +31,4 @@ else:
 
 commands = commands.split()
 
-Popen(commands, shell=True,)
+run(" ".join(commands), shell=True)
