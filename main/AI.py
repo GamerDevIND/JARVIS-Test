@@ -42,9 +42,9 @@ class AI:
         self.context = await self.load_context()
         self.platform = platform
         await log("Warming up all models...", "info")
-        warmup_tasks = [model.warm_up() for model in self.models.values()]
-        await asyncio.gather(*warmup_tasks)
-        asyncio.create_task(self.check_models())
+        for model in self.models.values():
+            await model.warm_up()
+            await asyncio.sleep(0.02) 
 
     async def load_context(self):
         try:
