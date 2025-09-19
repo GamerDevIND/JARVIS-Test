@@ -23,7 +23,7 @@ class Model:
         self.process = None
 
     def _get_endpoint(self) -> str:
-        return "/api/generate"
+        return "/api/chat"
 
     async def wait_until_ready(self, url: str, timeout: int = 30):
         await log(f"Waiting for {self.name} on {url}...", "info")
@@ -73,10 +73,12 @@ class Model:
             "messages": [{"role": "user", "content": "hi"}],
             "stream": False,
         }
+        print(f'Sending request on {url}:\n{data}')
         try:
             async with self.session.post(url, headers=headers, data=json.dumps(data)) as response:
                 response.raise_for_status()
                 res_json = await response.json()
+                print(f"recieved:\n{res_json}")
                 if not ('message' in res_json and 'content' in res_json['message']):
                     raise ValueError("Unexpected API response format during non-streaming test.")
         except (aiohttp.ClientError, ValueError) as e:
