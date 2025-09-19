@@ -36,7 +36,7 @@
         "has_tools": false,
         "has_CoT": false,
         "has_vision": true,
-        "port": 114543,
+        "port": 11543,
         "system_prompt" : ""
     }
 ]
