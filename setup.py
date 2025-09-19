@@ -29,6 +29,4 @@ else:
     print("Please install the desired models")
     exit()
 
-commands = commands.split()
-
-run(" ".join(commands), shell=True)
+run(commands, shell=True)
