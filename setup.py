@@ -29,4 +29,4 @@ else:
     print("Please install the desired models")
     exit()
 
-run(commands, shell=True)
+run(commands, shell=True, check=True)
