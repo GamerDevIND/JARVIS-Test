@@ -7,7 +7,7 @@ ollama = input("Do you have Ollama installed? (Y/N) ").lower()
 if ollama == "n":
     os = input("Which OS are you using? (W for Windows / L for Linux / M for MacOS) ").lower()
     if os == "l":
-        if input("Do you want to install Ollama now? (Y/N)").lower() == "y":
+        if input("Do you want to install Ollama now? (Y/N) ").lower() == "y":
             commands += "&& curl -fsSL https://ollama.com/install.sh | sh"
         else: 
             print("Ollama is required")
