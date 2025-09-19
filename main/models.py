@@ -23,8 +23,7 @@ class Model:
         self.process = None
 
     def _get_endpoint(self) -> str:
-
-        return "/api/chat"
+        return "/api/generate"
 
     async def wait_until_ready(self, url: str, timeout: int = 30):
         await log(f"Waiting for {self.name} on {url}...", "info")
