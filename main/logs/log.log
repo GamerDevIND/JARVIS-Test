@@ -113,3 +113,44 @@
 ℹ️ [info] Waiting for MoonDream on http://localhost:11543... - [2025-09-19 16:41:21]
 ✅ [success] MoonDream is ready! - [2025-09-19 16:41:21]
 🟥 [error] 🟥 Non-streaming test failed for MoonDream: 404, message='Not Found', url='http://localhost:11543/api/chat' - [2025-09-19 16:41:21]
+ℹ️ [info] Warming up all models... - [2025-09-20 11:28:34]
+ℹ️ [info] 🟨 [INFO] Zephyr (zephyr) warming up... - [2025-09-20 11:28:34]
+ℹ️ [info] Waiting for Zephyr on http://localhost:11434... - [2025-09-20 11:28:34]
+✅ [success] Zephyr is ready! - [2025-09-20 11:28:34]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-20 11:29:17]
+✅ [success] 🟩 [INFO] Zephyr (zephyr) warmed up! - [2025-09-20 11:29:24]
+ℹ️ [info] 🟨 [INFO] Deepseek-R1 (deepseek-r1:7b) warming up... - [2025-09-20 11:29:24]
+ℹ️ [info] Waiting for Deepseek-R1 on http://localhost:13345... - [2025-09-20 11:29:24]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-20 11:29:24]
+✅ [success] Deepseek-R1 is ready! - [2025-09-20 11:29:25]
+🟥 [error] 🟥 Non-streaming test failed for Deepseek-R1: 500, message='Internal Server Error', url='http://localhost:13345/api/chat' - [2025-09-20 11:29:25]
+ℹ️ [info] 🟨 [INFO] Router (smollm2:135m) warming up... - [2025-09-20 11:29:25]
+ℹ️ [info] Waiting for Router on http://localhost:11435... - [2025-09-20 11:29:25]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-20 11:29:25]
+✅ [success] Router is ready! - [2025-09-20 11:29:26]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-20 11:29:28]
+✅ [success] 🟩 [INFO] Router (smollm2:135m) warmed up! - [2025-09-20 11:29:28]
+ℹ️ [info] 🟨 [INFO] MoonDream (moondream) warming up... - [2025-09-20 11:29:28]
+ℹ️ [info] Waiting for MoonDream on http://localhost:11543... - [2025-09-20 11:29:28]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-20 11:29:28]
+✅ [success] MoonDream is ready! - [2025-09-20 11:29:29]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-20 11:29:35]
+✅ [success] 🟩 [INFO] MoonDream (moondream) warmed up! - [2025-09-20 11:29:36]
+ℹ️ [info] Generating non-streaming response from Router... - [2025-09-20 11:29:51]
+🟥 [error] Router returned unknown model: ```python
+import re
+from datetime import datetime
+
+def get_message(msg):
+    pattern = r"\d{2}-\d{2}[-. ]*?\\(\d+)-([A-Z][a-z])*-[0-9]?"
+    match = re.search(pattern, msg)
+    
+    if match:
+        return match.group() + "@" + match.group(), 3600
+    else:
+        raise ValueError("Invalid message format")
+```, using default. - [2025-09-20 11:29:57]
+ℹ️ [info] Using stream: True - [2025-09-20 11:29:57]
+ [warn] Restarting model Zephyr - [2025-09-20 11:29:57]
+ℹ️ [info] Generating streaming response from Zephyr... - [2025-09-20 11:29:57]
+🟥 [error] 🟥 [ERROR] Connection error: 500, message='Internal Server Error', url='http://localhost:11434/api/chat' - [2025-09-20 11:30:08]

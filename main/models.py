@@ -73,12 +73,12 @@ class Model:
             "messages": [{"role": "user", "content": "hi"}],
             "stream": False,
         }
-        print(f'Sending request on {url}:\n{data}')
+        await log(f'Sending request on {url}:\n{data}', 'info')
         try:
             async with self.session.post(url, headers=headers, data=json.dumps(data)) as response:
                 response.raise_for_status()
                 res_json = await response.json()
-                print(f"recieved:\n{res_json}")
+                await log(f"recieved:\n{res_json}", 'info')
                 if not ('message' in res_json and 'content' in res_json['message']):
                     raise ValueError("Unexpected API response format during non-streaming test.")
         except (aiohttp.ClientError, ValueError) as e:
