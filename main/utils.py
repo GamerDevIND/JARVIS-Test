@@ -6,7 +6,7 @@ import json
 from spin import Spinner
 
 async def log(message: str, level, log_file: str = "/workspaces/JARVIS-Test/main/logs/log.log", append = True):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%H:%M:%S %m / %d / %Y ")
     emoji = {
         "info": "ℹ️",
         "warning": "⚠️",

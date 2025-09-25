@@ -69,74 +69,6 @@ class AI:
                     await model.warm_up()
             await asyncio.sleep(interval)
 
-    async def route_query(self, query: str, manual: str | None = None) -> str:
-        if manual is not None:
-            if manual == "think":
-                return "cot"
-            elif manual == "chat":
-                self.models["chat"].system = CHAT_PROMPT
-                return "chat"
-            elif manual == "chaos":
-                self.models["chat"].system = CHAOS_PROMPT
-                return "chat"
-
-        router = self.models.get("router")
-        if not router:
-            await log("Router model not found, using default model.", "error")
-            return self.default_model
-
-        try:
-            response = await router.generate_response_noStream(query, self.context)
-            if response and response.strip() in self.models:
-                await log(f"Router selected model: {response.strip()}", "info")
-                return response.strip()
-            else:
-                await log(f"Router returned unknown model: {response}, using default.", "error")
-                return self.default_model
-        except Exception as e:
-            await log(f"Error during routing: {e}, using default.", "error")
-            return self.default_model
-
-    async def generate(self, query: str):
-        if not query:
-            return
-            
-        if query.startswith("!"):
-            parts = query.split(" ", 1)
-            command = parts[0][1:]
-            query = parts[1] if len(parts) > 1 else ""
-            model_name = await self.route_query(query, manual=command)
-        else:
-            model_name = await self.route_query(query)
-
-        model = self.models.get(model_name)
-        if not model:
-            yield "Sorry, the requested model is not available."
-            return
-
-        stream = self.platform.lower() not in STREAM_DISABLED
-        await log(f"Using stream: {stream}", "info")
-        poll = model.process.poll()  # type: ignore
-
-        if poll is not None:
-            await log(f"Restarting model {model.name}", "warn")
-            await model.warm_up()
-        else:
-            await log("Continuing with model", "info")
-
-        full_response = ""
-        if stream:
-            async for part in model.generate_response_Stream(query, self.context):
-                full_response += part
-                yield part
-        else:
-            response_text = await model.generate_response_noStream(query, self.context)
-            full_response = response_text
-            yield response_text
-
-        self.context['conversations'].append({"role": "user", "content": query})
-        self.context['conversations'].append({"role": "assistant", "content": full_response})
-        await self.save_context()
 
     async def shut_down(self):
         await log("Shutting Down all services...", "info")
@@ -155,8 +87,8 @@ async def main():
             break
         
         try:
-            async for part in ai.generate(req):
-                print(part, end="", flush=True)
+            # async for part in ai.generate(req):
+            #     print(part, end="", flush=True)
             print()
         except Exception as e:
             await log(f"Main loop error: {e}", "error")
