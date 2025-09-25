@@ -1,12 +1,12 @@
-time=2025-09-20T11:29:28.836Z level=INFO source=routes.go:1332 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://localhost:11543 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/home/codespace/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
-time=2025-09-20T11:29:28.839Z level=INFO source=images.go:477 msg="total blobs: 22"
-time=2025-09-20T11:29:28.839Z level=INFO source=images.go:484 msg="total unused blobs removed: 0"
-time=2025-09-20T11:29:28.840Z level=INFO source=routes.go:1385 msg="Listening on 127.0.0.1:11543 (version 0.11.11)"
-time=2025-09-20T11:29:28.840Z level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
-time=2025-09-20T11:29:28.846Z level=INFO source=gpu.go:388 msg="no compatible GPUs were discovered"
-time=2025-09-20T11:29:28.846Z level=INFO source=types.go:131 msg="inference compute" id=0 library=cpu variant="" compute="" driver=0.0 name="" total="15.6 GiB" available="2.9 GiB"
-time=2025-09-20T11:29:28.846Z level=INFO source=routes.go:1426 msg="entering low vram mode" "total vram"="15.6 GiB" threshold="20.0 GiB"
-[GIN] 2025/09/20 - 11:29:29 | 200 |     919.799µs |       127.0.0.1 | GET      "/api/tags"
+time=2025-09-23T16:20:43.395Z level=INFO source=routes.go:1332 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://localhost:11543 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/home/codespace/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2025-09-23T16:20:43.397Z level=INFO source=images.go:477 msg="total blobs: 22"
+time=2025-09-23T16:20:43.398Z level=INFO source=images.go:484 msg="total unused blobs removed: 0"
+time=2025-09-23T16:20:43.398Z level=INFO source=routes.go:1385 msg="Listening on 127.0.0.1:11543 (version 0.11.11)"
+time=2025-09-23T16:20:43.399Z level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
+time=2025-09-23T16:20:43.428Z level=INFO source=gpu.go:388 msg="no compatible GPUs were discovered"
+time=2025-09-23T16:20:43.428Z level=INFO source=types.go:131 msg="inference compute" id=0 library=cpu variant="" compute="" driver=0.0 name="" total="15.6 GiB" available="7.3 GiB"
+time=2025-09-23T16:20:43.428Z level=INFO source=routes.go:1426 msg="entering low vram mode" "total vram"="15.6 GiB" threshold="20.0 GiB"
+[GIN] 2025/09/23 - 16:20:44 | 200 |     732.617µs |       127.0.0.1 | GET      "/api/tags"
 llama_model_loader: loaded meta data with 20 key-value pairs and 245 tensors from /home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b (version GGUF V3 (latest))
 llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
 llama_model_loader: - kv   0:                       general.architecture str              = phi2
@@ -56,18 +56,18 @@ print_info: LF token         = 198 'Ċ'
 print_info: EOG token        = 50256 '<|endoftext|>'
 print_info: max token length = 256
 llama_model_load: vocab only - skipping tensors
-time=2025-09-20T11:29:30.069Z level=WARN source=server.go:171 msg="requested context size too large for model" num_ctx=4096 n_ctx_train=2048
-time=2025-09-20T11:29:30.069Z level=INFO source=server.go:399 msg="starting runner" cmd="/usr/local/bin/ollama runner --model /home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b --port 43537"
-time=2025-09-20T11:29:30.070Z level=INFO source=server.go:504 msg="system memory" total="15.6 GiB" free="2.9 GiB" free_swap="0 B"
-time=2025-09-20T11:29:30.073Z level=INFO source=memory.go:36 msg="new model will fit in available VRAM across minimum required GPUs, loading" model=/home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b library=cpu parallel=1 required="0 B" gpus=1
-time=2025-09-20T11:29:30.075Z level=INFO source=server.go:544 msg=offload library=cpu layers.requested=-1 layers.model=25 layers.offload=0 layers.split=[] memory.available="[2.9 GiB]" memory.gpu_overhead="0 B" memory.required.full="2.1 GiB" memory.required.partial="0 B" memory.required.kv="384.0 MiB" memory.required.allocations="[2.1 GiB]" memory.weights.total="732.3 MiB" memory.weights.repeating="650.1 MiB" memory.weights.nonrepeating="82.2 MiB" memory.graph.full="148.0 MiB" memory.graph.partial="190.0 MiB" projector.weights="867.6 MiB" projector.graph="0 B"
-time=2025-09-20T11:29:30.086Z level=INFO source=runner.go:864 msg="starting go runner"
+time=2025-09-23T16:20:44.667Z level=WARN source=server.go:171 msg="requested context size too large for model" num_ctx=4096 n_ctx_train=2048
+time=2025-09-23T16:20:44.667Z level=INFO source=server.go:399 msg="starting runner" cmd="/usr/local/bin/ollama runner --model /home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b --port 45219"
+time=2025-09-23T16:20:44.668Z level=INFO source=server.go:504 msg="system memory" total="15.6 GiB" free="7.2 GiB" free_swap="0 B"
+time=2025-09-23T16:20:44.678Z level=INFO source=runner.go:864 msg="starting go runner"
 load_backend: loaded CPU backend from /usr/local/lib/ollama/libggml-cpu-haswell.so
-time=2025-09-20T11:29:30.094Z level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(gcc)
-time=2025-09-20T11:29:30.094Z level=INFO source=runner.go:900 msg="Server listening on 127.0.0.1:43537"
-time=2025-09-20T11:29:30.097Z level=INFO source=runner.go:799 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:false KvSize:2048 KvCacheType: NumThreads:2 GPULayers:[] MultiUserCache:false ProjectorPath:/home/codespace/.ollama/models/blobs/sha256-4cc1cb3660d87ff56432ebeb7884ad35d67c48c7b9f6b2856f305e39c38eed8f MainGPU:0 UseMmap:false}"
-time=2025-09-20T11:29:30.098Z level=INFO source=server.go:1251 msg="waiting for llama runner to start responding"
-time=2025-09-20T11:29:30.098Z level=INFO source=server.go:1285 msg="waiting for server to become available" status="llm server loading model"
+time=2025-09-23T16:20:44.685Z level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 compiler=cgo(gcc)
+time=2025-09-23T16:20:44.685Z level=INFO source=runner.go:900 msg="Server listening on 127.0.0.1:45219"
+time=2025-09-23T16:20:44.733Z level=INFO source=memory.go:36 msg="new model will fit in available VRAM across minimum required GPUs, loading" model=/home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b library=cpu parallel=1 required="0 B" gpus=1
+time=2025-09-23T16:20:44.735Z level=INFO source=server.go:544 msg=offload library=cpu layers.requested=-1 layers.model=25 layers.offload=0 layers.split=[] memory.available="[7.3 GiB]" memory.gpu_overhead="0 B" memory.required.full="2.1 GiB" memory.required.partial="0 B" memory.required.kv="384.0 MiB" memory.required.allocations="[2.1 GiB]" memory.weights.total="732.3 MiB" memory.weights.repeating="650.1 MiB" memory.weights.nonrepeating="82.2 MiB" memory.graph.full="148.0 MiB" memory.graph.partial="190.0 MiB" projector.weights="867.6 MiB" projector.graph="0 B"
+time=2025-09-23T16:20:44.736Z level=INFO source=runner.go:799 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:false KvSize:2048 KvCacheType: NumThreads:2 GPULayers:[] MultiUserCache:false ProjectorPath:/home/codespace/.ollama/models/blobs/sha256-4cc1cb3660d87ff56432ebeb7884ad35d67c48c7b9f6b2856f305e39c38eed8f MainGPU:0 UseMmap:false}"
+time=2025-09-23T16:20:44.736Z level=INFO source=server.go:1251 msg="waiting for llama runner to start responding"
+time=2025-09-23T16:20:44.736Z level=INFO source=server.go:1285 msg="waiting for server to become available" status="llm server loading model"
 llama_model_loader: loaded meta data with 20 key-value pairs and 245 tensors from /home/codespace/.ollama/models/blobs/sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b (version GGUF V3 (latest))
 llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
 llama_model_loader: - kv   0:                       general.architecture str              = phi2
@@ -193,9 +193,9 @@ load_hparams: n_wa_pattern:       0
 load_hparams: model size:         867.61 MiB
 load_hparams: metadata size:      0.16 MiB
 alloc_compute_meta:        CPU compute buffer size =    46.89 MiB
-time=2025-09-20T11:29:35.620Z level=INFO source=server.go:1289 msg="llama runner started in 5.55 seconds"
-time=2025-09-20T11:29:35.620Z level=INFO source=sched.go:473 msg="loaded runners" count=1
-time=2025-09-20T11:29:35.620Z level=INFO source=server.go:1251 msg="waiting for llama runner to start responding"
-time=2025-09-20T11:29:35.620Z level=INFO source=server.go:1289 msg="llama runner started in 5.55 seconds"
-[GIN] 2025/09/20 - 11:29:35 | 200 |  6.066872087s |       127.0.0.1 | POST     "/api/chat"
-[GIN] 2025/09/20 - 11:29:36 | 200 |  204.551339ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-09-23T16:22:23.309Z level=INFO source=server.go:1289 msg="llama runner started in 98.64 seconds"
+time=2025-09-23T16:22:23.309Z level=INFO source=sched.go:473 msg="loaded runners" count=1
+time=2025-09-23T16:22:23.309Z level=INFO source=server.go:1251 msg="waiting for llama runner to start responding"
+time=2025-09-23T16:22:23.309Z level=INFO source=server.go:1289 msg="llama runner started in 98.64 seconds"
+[GIN] 2025/09/23 - 16:22:23 | 200 |         1m39s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2025/09/23 - 16:22:23 | 200 |   159.09758ms |       127.0.0.1 | POST     "/api/chat"
