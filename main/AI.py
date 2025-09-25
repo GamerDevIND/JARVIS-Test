@@ -70,6 +70,21 @@ class AI:
             await asyncio.sleep(interval)
 
 
+    async def route_query(self, query: str):
+        router_model = self.models.get("router")
+        if not router_model:
+            await log("🟥 Router model not configured.", "error")
+            return self.default_model
+
+        response = await router_model.generate_response_noStream(query, self.context)
+        selected_role = response.strip().lower()
+        if selected_role in self.models:
+            await log(f"Router selected model '{selected_role}'.", "info")
+            return selected_role
+        else:
+            await log(f"⚠️ Router selected unknown role '{selected_role}'. Using default '{self.default_model}'.", "warn")
+            return self.default_model
+
     async def shut_down(self):
         await log("Shutting Down all services...", "info")
         shutdown_tasks = [model.shutdown() for model in self.models.values()]
