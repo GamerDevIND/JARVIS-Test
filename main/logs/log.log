@@ -201,3 +201,10 @@ def get_message(msg):
 ℹ️ [info] Using stream: True - [2025-09-23 16:46:26]
 ℹ️ [info] Continuing with model - [2025-09-23 16:46:26]
 ℹ️ [info] Generating streaming response from Zephyr... - [2025-09-23 16:46:26]
+ℹ️ [info] Warming up all models... - [2025-09-25 12:22:11]
+ℹ️ [info] 🟨 [INFO] Zephyr (zephyr) warming up... - [2025-09-25 12:22:11]
+ℹ️ [info] Waiting for Zephyr on http://localhost:11434... - [2025-09-25 12:22:11]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-25 12:22:11]
+✅ [success] Zephyr is ready! - [2025-09-25 12:22:12]
+ℹ️ [info] Sending request on http://localhost:11434/api/chat:
+{'model': 'zephyr', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:22:12]

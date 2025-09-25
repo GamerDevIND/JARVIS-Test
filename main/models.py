@@ -6,7 +6,7 @@ import subprocess
 from utils import log
 
 class Model:
-    def __init__(self, role: str, name: str, ollama_name: str, has_tools: bool, has_CoT: bool, has_vision:bool, port: int, system_prompt: str) -> None:
+    def __init__(self, role: str, name: str, ollama_name: str, has_tools: bool, has_CoT: bool, has_vision:bool, port: int, system_prompt: str):
         self.role = role
         self.name = name
         self.ollama_name = ollama_name
@@ -102,6 +102,7 @@ class Model:
                                 json_line = json.loads(line.strip())
                                 # Assumes a streaming response contains a "message" object
                                 if 'message' in json_line:
+                                    print(json_line)
                                     break
                             except json.JSONDecodeError:
                                 continue
