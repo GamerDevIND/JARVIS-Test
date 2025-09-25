@@ -208,3 +208,50 @@ def get_message(msg):
 ✅ [success] Zephyr is ready! - [2025-09-25 12:22:12]
 ℹ️ [info] Sending request on http://localhost:11434/api/chat:
 {'model': 'zephyr', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:22:12]
+ℹ️ [info] Warming up all models... - [2025-09-25 12:25:39]
+ℹ️ [info] 🟨 [INFO] Zephyr (zephyr) warming up... - [2025-09-25 12:25:39]
+ℹ️ [info] Waiting for Zephyr on http://localhost:11434... - [2025-09-25 12:25:39]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-25 12:25:39]
+✅ [success] Zephyr is ready! - [2025-09-25 12:25:40]
+ℹ️ [info] Sending request on http://localhost:11434/api/chat:
+{'model': 'zephyr', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:25:40]
+ℹ️ [info] recieved:
+{'model': 'zephyr', 'created_at': '2025-09-25T12:28:42.696792799Z', 'message': {'role': 'assistant', 'content': "Hello! How may I assist you today? Please let me know your query or request. You can type in a question, instruction, or any other message and I'll do my best to provide an accurate response. Thank you for choosing our customer support service!\n\nBest regards,\nYour friendly AI-powered virtual assistant."}, 'done_reason': 'stop', 'done': True, 'total_duration': 181824096077, 'load_duration': 165011100186, 'prompt_eval_count': 21, 'prompt_eval_duration': 2623981396, 'eval_count': 68, 'eval_duration': 14188148274} - [2025-09-25 12:28:42]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-25 12:28:42]
+✅ [success] 🟩 [INFO] Zephyr (zephyr) warmed up! - [2025-09-25 12:28:57]
+ℹ️ [info] 🟨 [INFO] Deepseek-R1 (deepseek-r1:7b) warming up... - [2025-09-25 12:28:57]
+ℹ️ [info] Waiting for Deepseek-R1 on http://localhost:13345... - [2025-09-25 12:28:57]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-25 12:28:57]
+✅ [success] Deepseek-R1 is ready! - [2025-09-25 12:28:58]
+ℹ️ [info] Sending request on http://localhost:13345/api/chat:
+{'model': 'deepseek-r1:7b', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:28:58]
+ℹ️ [info] recieved:
+{'model': 'deepseek-r1:7b', 'created_at': '2025-09-25T12:33:56.789295582Z', 'message': {'role': 'assistant', 'content': '<think>\n\n</think>\n\nHello! How can I assist you today? 😊'}, 'done_reason': 'stop', 'done': True, 'total_duration': 298577398140, 'load_duration': 295402394727, 'prompt_eval_count': 4, 'prompt_eval_duration': 549509285, 'eval_count': 16, 'eval_duration': 2615267327} - [2025-09-25 12:33:56]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-25 12:33:56]
+✅ [success] 🟩 [INFO] Deepseek-R1 (deepseek-r1:7b) warmed up! - [2025-09-25 12:33:59]
+ℹ️ [info] 🟨 [INFO] Router (smollm2:135m) warming up... - [2025-09-25 12:33:59]
+ℹ️ [info] Waiting for Router on http://localhost:11435... - [2025-09-25 12:33:59]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-25 12:33:59]
+✅ [success] Router is ready! - [2025-09-25 12:34:00]
+ℹ️ [info] Sending request on http://localhost:11435/api/chat:
+{'model': 'smollm2:135m', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:34:00]
+ℹ️ [info] recieved:
+{'model': 'smollm2:135m', 'created_at': '2025-09-25T12:34:17.722224638Z', 'message': {'role': 'assistant', 'content': "*hello* hi! how's it going? How've you been?"}, 'done_reason': 'stop', 'done': True, 'total_duration': 16902367922, 'load_duration': 16640315517, 'prompt_eval_count': 31, 'prompt_eval_duration': 121548781, 'eval_count': 16, 'eval_duration': 139336072} - [2025-09-25 12:34:17]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-25 12:34:17]
+✅ [success] 🟩 [INFO] Router (smollm2:135m) warmed up! - [2025-09-25 12:34:18]
+ℹ️ [info] 🟨 [INFO] MoonDream (moondream) warming up... - [2025-09-25 12:34:18]
+ℹ️ [info] Waiting for MoonDream on http://localhost:11543... - [2025-09-25 12:34:18]
+ℹ️ [info] Retries: 1 / 30 - [2025-09-25 12:34:18]
+✅ [success] MoonDream is ready! - [2025-09-25 12:34:19]
+ℹ️ [info] Sending request on http://localhost:11543/api/chat:
+{'model': 'moondream', 'messages': [{'role': 'user', 'content': 'hi'}], 'stream': False} - [2025-09-25 12:34:19]
+ℹ️ [info] recieved:
+{'model': 'moondream', 'created_at': '2025-09-25T12:36:04.065065604Z', 'message': {'role': 'assistant', 'content': '\n Hi'}, 'done_reason': 'stop', 'done': True, 'total_duration': 104722020897, 'load_duration': 104460864235, 'prompt_eval_count': 7, 'prompt_eval_duration': 177420671, 'eval_count': 3, 'eval_duration': 82976863} - [2025-09-25 12:36:04]
+✅ [success] 🟩 Non-Streaming works. Trying Streaming... - [2025-09-25 12:36:04]
+✅ [success] 🟩 [INFO] MoonDream (moondream) warmed up! - [2025-09-25 12:36:04]
+ℹ️ [info] Generating non-streaming response from Router... - [2025-09-25 12:37:06]
+🟥 [error] Router returned unknown model: 
+[Connection error: 500, message='Internal Server Error', url='http://localhost:11434/api/chat'], using default. - [2025-09-25 12:37:11]
+ℹ️ [info] Using stream: True - [2025-09-25 12:37:11]
+ℹ️ [info] Continuing with model - [2025-09-25 12:37:11]
+ℹ️ [info] Generating streaming response from Zephyr... - [2025-09-25 12:37:11]

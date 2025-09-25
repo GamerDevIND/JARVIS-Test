@@ -102,7 +102,7 @@ class Model:
                                 json_line = json.loads(line.strip())
                                 # Assumes a streaming response contains a "message" object
                                 if 'message' in json_line:
-                                    print(json_line)
+                                    await log(json_line, "info")
                             except json.JSONDecodeError:
                                 continue
         except (aiohttp.ClientError, json.JSONDecodeError) as e:
